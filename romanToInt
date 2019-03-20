@@ -1,0 +1,71 @@
+#include<iostream>
+#include<math.h>
+#include<string.h>
+using namespace std;
+
+int romanToInt(string s)
+{
+    char arr[10];
+    strcpy(arr, s.c_str());
+    int number = 0;
+    for (int i = 0; i < strlen(arr);i++)
+    {
+        if(arr[i]=='I')
+        
+            if(i<strlen(arr)-1&&(arr[i+1]=='V'||arr[i+1]=='X'))
+                {
+                    number -= 1;
+                }
+            else    
+            {
+                number += 1;
+            }
+        else if(arr[i]=='X')
+            if (i < strlen(arr)-1&&(arr[i+1]=='L'||arr[i+1]=='C'))
+                {
+                    number -= 10;
+                }
+            else
+            {
+                number += 10;
+            }
+        else if(arr[i]=='C')
+        {
+            if(i<strlen(arr)&&(arr[i+1]=='D'||arr[i+1]=='M'))
+                {
+                    number -= 100;
+                }
+            else
+            {
+                number += 100;
+            }
+        }
+        else if(arr[i]=='V')
+            {
+                number += 5;
+            }
+        else if(arr[i]=='L')
+            {
+                number += 50;
+            }
+        else if(arr[i]=='D')
+            {
+                number += 500;
+            }
+        else if(arr[i]=='M')
+            {
+                number += 1000;
+            }
+    }
+    return number;
+}
+
+int main()
+{
+    char R[20];
+    cout << "请输入一个罗马数字从1～3999：" << endl;
+    cin >> R;
+    int n;
+    n = romanToInt(R);
+    cout << n << endl;
+}
